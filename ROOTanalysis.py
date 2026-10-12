@@ -57,6 +57,7 @@ ax.set_zlabel("Z")
 plt.show()
 
 ##### plot of energy distribution #####
+# this should just be zero since it is tracking optical photons
 
 edep = tree["Edep"].array(library="np")
 
@@ -65,17 +66,3 @@ plt.xlabel("Deposited Energy")
 plt.ylabel("Number of Hits")
 plt.show()
 
-##### checking zero-valued energies ####
-# this is worth investigating -- not sure why all entries are zero. Should check source code
-print("Number of entries:", len(edep))
-print("Minimum:", np.min(edep))
-print("Maximum:", np.max(edep))
-print("Mean:", np.mean(edep))
-print("Total:", np.sum(edep))
-
-print("Number exactly zero:", np.sum(edep == 0))
-print("Number nonzero:", np.sum(edep != 0))
-
-# Print some values in scientific notation
-for value in edep[:20]:
-    print(f"{value:.8e}")
