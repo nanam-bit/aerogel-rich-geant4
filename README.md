@@ -11,12 +11,13 @@ For this simulation, we assume that some particle travels in a straight line alo
 
 ## Build Instructions
 
-To build this project, install Geant4
+To build this project, install Geant4 and CMake. Use the CMakeLists.txt to build the project and run the executable file.
 
 ## Data Output
 
-
+The ROOT file output contains data on photon coordinates and energy deposition. 
 
 ## Analysis
 
+The ROOTanalysis.py file is meant for output analysis using uproot (WIP).
 
