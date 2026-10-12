@@ -1,82 +1,81 @@
-# figuring out how to use uproot
-
-# import headers
 import uproot
 import numpy as np
 import matplotlib.pyplot as plt
 
-# open a ROOT file for reading
-file = uproot.open("C:\\Users\\nanak\\Geant4\\projdirec\\P1_cherenkov\\rich_sim_output_t0.root")
+##### extracting basic information #####
+# Open ROOT file
+file = uproot.open("rich_sim_output_t0.root")
 
-## print(file.keys()) # returns [PhotonHits;1]
+# Inspect contents
+print("File contents:")
+print(file.keys())
 
+# Get the TTree
 tree = file["PhotonHits"]
-print(tree.keys())
+
+# Inspect tree
+print("\nBranches:")
 tree.show()
 
-## file.keys() returns
-##['hits per event;1',    'hits above threshold;1',
-## 'Cerenkov;1',          'absorbed;1',
-## 'boundary absorbed;1', 'E dep;1']
-##
+# Load all branches
+data = tree.arrays(library="np")
 
-##hist = file["E dep"]
-##
-### hist.all_members --> prints all identification
-##histName = hist.member("fName")
-##
-##values = hist.values() # bin values (y-axis)
-##edges = hist.axis().edges() # bin edges (x-axis)
-##errors = hist.errors()
+# Extract individual quantities
+x = data["X"]
+y = data["Y"]
+z = data["Z"]
+edep = data["Edep"]
 
-##plt.stairs(values, edges)
-##plt.title(histName)
-##plt.show()
+# Basic information
+print("\nNumber of hits:", len(x))
 
+print("X range:", x.min(), "to", x.max())
+print("Y range:", y.min(), "to", y.max())
+print("Z range:", z.min(), "to", z.max())
 
-# --------------------------------------------------------------------------------------#
-# --------------------------------------------------------------------------------------#
-# --------------------------------------------------------------------------------------#
-
-##fig, axs = plt.subplots(3,2)
-##axs[0,0].stairs(values, edges)
-##axs[0,1].stairs(values, edges)
-##axs[1,0].stairs(values, edges)
-##axs[1,1].stairs(values, edges)
-##axs[2,0].stairs(values, edges)
-##axs[2,1].stairs(values, edges)
-##
-##for ax in axs.flat:
-##    ax.set(xlabel='x-label', ylabel='y-label')
-##
-####for ax in axs.flat:
-####    ax.label_outer()
-
-## plt.show()
+print("Total deposited energy:", edep.sum())
+print("Mean deposited energy:", edep.mean())
 
 
+##### 3D plot of the hits #####
 
+data = tree.arrays(["X", "Y", "Z"], library="np")
 
+x = data["X"]
+y = data["Y"]
+z = data["Z"]
 
+fig = plt.figure()
+ax = fig.add_subplot(111, projection="3d")
 
+ax.scatter(x, y, z, s=1)
 
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
 
+plt.show()
 
+##### plot of energy distribution #####
 
+edep = tree["Edep"].array(library="np")
 
+plt.hist(edep, bins=100)
+plt.xlabel("Deposited Energy")
+plt.ylabel("Number of Hits")
+plt.show()
 
+##### checking zero-valued energies ####
+# this is worth investigating -- not sure why all entries are zero. Should check source code
+print("Number of entries:", len(edep))
+print("Minimum:", np.min(edep))
+print("Maximum:", np.max(edep))
+print("Mean:", np.mean(edep))
+print("Total:", np.sum(edep))
 
+print("Number exactly zero:", np.sum(edep == 0))
+print("Number nonzero:", np.sum(edep != 0))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Print some values in scientific notation
+for value in edep[:20]:
+    print(f"{value:.8e}")
