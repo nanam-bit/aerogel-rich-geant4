@@ -9,7 +9,14 @@ The particle's identity is indicated through its momentum and direction, which a
 
 For this simulation, we assume that some particle travels in a straight line along the z-axis through a radiator of some thickness, emitting a fixed number of photons uniformly along its path, where those photons project onto a flat detector array located at a distance.
 
-## Physics
-## Macro Files
+## Build Instructions
+
+To build this project, install Geant4
+
 ## Data Output
+
+
+
 ## Analysis
+
+
