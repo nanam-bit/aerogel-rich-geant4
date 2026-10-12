@@ -1,0 +1,7 @@
+# Macro for rich detector simulation
+# Initialize kernel
+/run/initialize
+#
+/gun/particle mu-
+/gun/energy 3 GeV
+/run/beamOn 3

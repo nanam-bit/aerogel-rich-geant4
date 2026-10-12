@@ -1,0 +1,10 @@
+# macro for initializing p1 cherenkov
+#
+# Set verbosity
+/control/verbose 2
+/control/saveHistory
+/run/verbose 2
+# Initialize kernel
+/run/initialize
+# execute visualizations
+/control/execute vis.mac
