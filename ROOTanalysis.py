@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 ##### extracting basic information #####
-# Open ROOT file
+# Open ROOT file -- the root file is located in DataOutput file
 file = uproot.open("rich_sim_output_t0.root")
 
 # Inspect contents
@@ -36,7 +36,6 @@ print("Z range:", z.min(), "to", z.max())
 print("Total deposited energy:", edep.sum())
 print("Mean deposited energy:", edep.mean())
 
-
 ##### 3D plot of the hits #####
 
 data = tree.arrays(["X", "Y", "Z"], library="np")
@@ -58,6 +57,11 @@ plt.show()
 
 ##### plot of energy distribution #####
 # this should just be zero since it is tracking optical photons
+# which are killed upon detection (see SensitiveDetector.cc in src file)
+# so this part is just to make sure it is in fact working as intended.
+# You could also just see that edep = 0 for all instances but 
+# in the future if I want to change it to track other particles
+# or just not have the fStopAndKill Command
 
 edep = tree["Edep"].array(library="np")
 
