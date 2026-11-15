@@ -86,7 +86,7 @@ Hits beyond detector edge region (r > 150.0 mm): 43
 
 ## Build Instructions
 
-To build this project, Geant4 (with data files) and CMake are required. Use the CMakeLists.txt to build the project and run the executable file. The project can be built the same way as Geant4 example projects. The file `run.mac` sets the particle's energy and runs the events, setting particle as pi-, energy 3 GeV, and 1000 runs. Note that the 3 GeV is kinetic energy, not momnetum. The file `init_vis.mac` and `vis.mac` can be run to view the geometry, and screenshots of the visuals are shown in DataOutput. 
+To build this project, Geant4 (with data files) and CMake are required. Use the CMakeLists.txt to build the project and run the executable file. The project can be built the same way as Geant4 example projects. The file `run.mac` sets the particle's energy and runs the events, setting particle as pi-, energy 3 GeV, and 1000 runs. Note that the 3 GeV is kinetic energy, not momentum. The file `init_vis.mac` and `vis.mac` can be run to view the geometry, and screenshots of the visuals are shown in DataOutput. 
 
 
 ## Updates to be made / Limitations
