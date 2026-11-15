@@ -88,14 +88,22 @@ The exact output of `ROOTanalysis_UPDATED.py` is below, for `rich_sim_output.roo
 
 Objects in file: ['PhotonHits;1', 'Events;1']
 
+
 Events:               1000
+
 Photons at detector:  329517  (329.5 per event)
+
 Detected hits:        98702  (98.7 per event)
+
 Hit rows in ntuple:   98702  (should equal detected hits)
+
 Hits / arrivals:      0.300  (expect ~0.3 from the efficiency curve)
 
+
 Analytic theta_c = 17.57 deg, ring radius 91.6-107.4 mm
+
 Simulated hit radius: mean 99.5 mm, std 5.5 mm, max 208.8 mm
+
 Hits beyond detector edge region (r > 150.0 mm): 43
 
 ## Build Instructions
