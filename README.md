@@ -45,7 +45,7 @@ The aerogel was defined to have $\lambda = 100 \text{cm}$, so a photon travling 
 
 On average, the photons are emitted halfway through the radiator, so the average path is about $\frac{T/2}{\cos\theta_c} = 2.6 \text{ cm}$. So, the percent loss is $(1 - e^{-.026}) \cdot 100 =$ 2.57\%.
 
-Finally, this gives $ (1 - .0257) \cdot 337 \approx 328 \text{ photons}$.
+Finally, this gives $(1 - .0257) \cdot 337 \approx 328 \text{ photons}$.
 
 ## Simulation Setup
 
