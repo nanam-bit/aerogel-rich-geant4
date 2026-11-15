@@ -43,7 +43,7 @@ Multiplying by the radiator thickness 5cm gives $67.5 \cdot 5 = 337 \text{ photo
 
 The aerogel was defined to have $\lambda = 100 \text{cm}$, so a photon travling some path length L in the aerogel will survive with probability $e^{-L/\lambda}$. A photon emitted at some depth $z$ from the entry face has to travel through the remaining thickness $T-z$ to leave the radiator (where $T$ is the thickness of the radiator). The photons travel at $\cos\theta_c$ to the beam axis, thus travels a path $L = (T-z)/\cos\theta_c$. 
 
-On average, the photons are emitted halfway through the radiator, so the average path is about $\frac{T/2}{\cos\theta_c} = 2.6 \text{ cm}$. So, the percent loss is $(1 - e^{-.026}) \cdot 100 = 2.57 \% $. 
+On average, the photons are emitted halfway through the radiator, so the average path is about $\frac{T/2}{\cos\theta_c} = 2.6 \text{ cm}$. So, the percent loss is $(1 - e^{-.026}) \cdot 100 =$ 2.57\%.
 
 
 
