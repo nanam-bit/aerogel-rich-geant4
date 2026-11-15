@@ -29,9 +29,18 @@ $$r_{min} = D\tan\theta_{out} = 91.6\ \text{mm},\qquad r_{max} = r_{min} + T\tan
 
 The photon energy form of the Frank-Tamm formula gives the number of photons emitted per unit length:
 
-$$\frac{d^2N}{dx dE} = (\frac{\alpha}{\hbar \c} \times z^2 \times \sin^2\theta_c$$
+$$\frac{d^2N}{dx dE} = (\frac{\alpha}{\hbar c} \cdot z^2 \cdot \sin^2\theta_c)$$
 
-With $\sin^2\theta_c = 1 - \frac{1}{n\beta} = 0.0912$ and $\Delta E = 2$ eV (the 2 to 4 eV window), $dN/dx = 67.5$ photons/cm, or **337 photons** over 5 cm. Aerogel absorption (100 cm absorption length) removes about 2.6% on average, leaving **about 329** photons reaching the detector.
+With $\sin^2\theta_c = 1 - \frac{1}{n\beta} = 0.0912$, $\Delta E = 2$ eV (the 2 to 4 eV window where RINDEX was defined, see `Detectorconstruction.cc`), $z = 1$ for a pion, and $\alpha = \frac{1}{137}$:
+
+The constant $\frac{\alpha}{\hbar c} \approx 370$ per eV per cm. 
+The rate per cm is $370 \cdot 0.0912 = 337 photons per cm$.
+Multiplied by the energy window, this gives $2 eV \cdot 33.7 = 67.5 photons per cm$.
+Multiplying by the radiator thickness 5cm gives $67.5 \cdot 5 = 337 photons$
+
+The aerogel was defined to have $\lambda = 100 cm$, so a photon travling some path length L in the aerogel will survive with probability $\e^(-L/\lambda)$. A photon emitted at some depth $z$ from the entry face has to travel through the remaining thickness $T-z$ to leave the radiator (where $T$ is the thickness of the radiator). The photons travel at $\cos\theta_c$ to the beam axis, thus travels a path $L = (T-z)/\cos\theta_c$. On average, the photons are emitted halfway through the radiator, so the average path is about $\frac{T/2}{\cos\theta_c} = 2.6 cm$. So, the percent loss is $(1 - \e^(-.026)) \cdot 100 = 2.57%$. 
+
+
 
 ## Simulation Setup
 
