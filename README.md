@@ -44,7 +44,7 @@ For this simulation, a particle travels in a straight line along the z-axis thro
 | Photon energy range | 2 to 4 eV (about 310 to 620 nm) |
 | Quantum efficiency | 25% / 35% / 25% at 2 / 3 / 4 eV (average 30%) |
 | Detector surface | `dielectric_metal`, reflectivity 0, so a photon is either detected (QE) or absorbed |
-| Beam | $\pi^-$, 3 GeV kinetic energy ($p$ = 3.14 GeV/$c$), along +z, 1000 events |
+| Beam | $\pi^-$, 3 GeV kinetic energy, along +z, 1000 events |
 | Physics | `FTFP_BERT` + `G4OpticalPhysics` (Cherenkov on, scintillation off) |
 
 Photons that are detected are killed at the detector boundary, so a sensitive detector attached to the SiC volume would never see them. Instead, `SteppingAction` counts every photon crossing into the detector (arrivals) and records a hit when `G4OpBoundaryProcess` reports `Detection`. The hit position is the point on the detector face. 
