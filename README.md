@@ -27,11 +27,11 @@ where $T = 50$ mm is the radiator thickness and $D = 274$ mm is the gap from the
 
 $$r_{min} = D\tan\theta_{out} = 91.6\ \text{mm},\qquad r_{max} = r_{min} + T\tan\theta_c = 107.4\ \text{mm}$$
 
-The Frank-Tamm formula gives the number of photons emitted per unit length:
+The photon energy form of the Frank-Tamm formula gives the number of photons emitted per unit length:
 
-$$\frac{dN}{dx} \approx 370\,\sin^2\theta_c\ \Delta E\ \ \text{(photons per cm, with } \Delta E \text{ in eV)}$$
+$$\frac{d^2N}{dx dE} = (\frac{\alpha}{\hbar \c} \times z^2 \times \sin^2\theta_c$$
 
-With $\sin^2\theta_c = 0.0912$ and $\Delta E = 2$ eV (the 2 to 4 eV window), $dN/dx = 67.5$ photons/cm, or **337 photons** over 5 cm. Aerogel absorption (100 cm absorption length) removes about 2.6% on average, leaving **about 329** photons reaching the detector.
+With $\sin^2\theta_c = 1 - \frac{1}{n\beta} = 0.0912$ and $\Delta E = 2$ eV (the 2 to 4 eV window), $dN/dx = 67.5$ photons/cm, or **337 photons** over 5 cm. Aerogel absorption (100 cm absorption length) removes about 2.6% on average, leaving **about 329** photons reaching the detector.
 
 ## Simulation Setup
 
