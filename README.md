@@ -7,7 +7,7 @@ The objective of this project is to simulate the characteristic ring pattern of 
 
 ## Theory
 
-**Cherenkov angle.** A charged particle with speed $\beta c$ in a medium of refractive index $n$ emits light at
+A charged particle with speed $\beta c$ in a medium of refractive index $n$ emits light at
 
 $$\cos\theta_c = \frac{1}{n\beta}$$
 
@@ -15,19 +15,19 @@ Measuring $\theta_c$ gives $\beta$, and with a known momentum this identifies th
 
 $$E = T + m = 3139.57\ \text{MeV},\quad \beta = \sqrt{1-(m/E)^2} = 0.99901,\quad \theta_c = 17.57^\circ$$
 
-**Refraction at the radiator exit.** Photons leave the aerogel (index $n$) into vacuum, so Snell's law bends them outward:
+Photons leave the aerogel (index $n$) into vacuum, so Snell's law bends them outward:
 
 $$\sin\theta_{out} = n\sin\theta_c \;\Rightarrow\; \theta_{out} = 18.48^\circ$$
 
-**Ring radius.** A photon emitted at depth $z_e$ below the radiator entry face lands at
+A photon emitted at depth $z_e$ below the radiator entry face lands at
 
 $$r = (T-z_e)\tan\theta_c + D\tan\theta_{out}$$
 
-where $T = 50$ mm is the radiator thickness and $D = 274$ mm is the gap from the radiator exit face to the detector. Because photons are emitted all along the track, the ring has a finite width:
+where $T = 50$ mm is the radiator thickness and $D = 274$ mm is the gap from the radiator exit face to the detector (see `DetectorConstruction.cc` for setup details). Because photons are emitted all along the track, the ring has a finite width:
 
 $$r_{min} = D\tan\theta_{out} = 91.6\ \text{mm},\qquad r_{max} = r_{min} + T\tan\theta_c = 107.4\ \text{mm}$$
 
-**Photon yield.** The Frank-Tamm formula gives the number of photons emitted per unit length:
+The Frank-Tamm formula gives the number of photons emitted per unit length:
 
 $$\frac{dN}{dx} \approx 370\,\sin^2\theta_c\ \Delta E\ \ \text{(photons per cm, with } \Delta E \text{ in eV)}$$
 
