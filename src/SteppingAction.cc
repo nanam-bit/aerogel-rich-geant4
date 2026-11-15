@@ -31,6 +31,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   fEventAction->AddArrival();
 
   // find the optical boundary process once per thread
+  // although this is multithreaded, the output files are all condensed into one file eventually
   if (!fBoundary) {
     auto pv = G4OpticalPhoton::Definition()->GetProcessManager()
                 ->GetPostStepProcessVector(typeDoIt);
