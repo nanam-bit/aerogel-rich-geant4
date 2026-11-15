@@ -2,6 +2,6 @@
 # Initialize kernel
 /run/initialize
 #
-/gun/particle mu-
+/gun/particle pi-
 /gun/energy 3 GeV
-/run/beamOn 3
+/run/beamOn 1000
