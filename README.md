@@ -34,7 +34,7 @@ $$\frac{d^2N}{dx dE} = (\frac{\alpha}{\hbar c} \cdot z^2 \cdot \sin^2\theta_c)$$
 With $\sin^2\theta_c = 1 - \frac{1}{n\beta} = 0.0912$, $\Delta E = 2$ eV (the 2 to 4 eV window where RINDEX was defined, see `Detectorconstruction.cc`), $z = 1$ for a pion, and $\alpha = \frac{1}{137}$:
 
 The constant $\frac{\alpha}{\hbar c} \approx 370 \text{per eV per cm}$.
-The rate per cm is $370 \cdot 0.0912 = 337 }\text{photons per cm}$.
+The rate per cm is $370 \cdot 0.0912 = 337 \text{photons per cm}$.
 Multiplied by the energy window, this gives $2 eV \cdot 33.7 = 67.5 \text{photons per cm}$.
 Multiplying by the radiator thickness 5cm gives $67.5 \cdot 5 = 337 \text{photons}$
 
