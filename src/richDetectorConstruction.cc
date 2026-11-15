@@ -65,6 +65,7 @@ void DetectorConstruction::DefineOpticalProperties()
   std::vector<G4double> aerogelAbsLength = {100*cm, 100*cm, 100*cm};
   std::vector<G4double> siliconAbsLength = {1.0*um, 1.0*um, 1.0*um};
   std::vector<G4double> efficiency = {.25, .35, .25}; 
+  std::vector<G4double> reflectivity = {0.0, 0.0, 0.0};
 
   // define refractive index and absorption length for aerogel
   G4MaterialPropertiesTable* aerogelMPT = new G4MaterialPropertiesTable();
@@ -97,6 +98,7 @@ void DetectorConstruction::DefineOpticalProperties()
 
   G4MaterialPropertiesTable* PhotoSurfaceMPT = new G4MaterialPropertiesTable();
   PhotoSurfaceMPT->AddProperty("EFFICIENCY", photonEnergy, efficiency);
+  PhotoSurfaceMPT->AddProperty("REFLECTIVITY", photonEnergy, reflectivity);
   fPhotocathodeSurface->SetMaterialPropertiesTable(PhotoSurfaceMPT);
 
 }
@@ -104,20 +106,23 @@ void DetectorConstruction::DefineOpticalProperties()
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
   // define necessary dimensions
-  G4double worldXY = 15*cm;   // 30 cm
-  G4double worldZ = 25*cm;    // 50 cm
+  G4double worldXY = 20*cm;   // 40 cm
+  G4double worldZ = 30*cm;    // 60 cm
   G4double radXY = 5*cm;      // 10 cm
   G4double radZ = 2.5*cm;     // 5 cm
-  G4double detXY = 10*cm;     // 20 cm
+  G4double detXY = 15*cm;     // 30 cm
   G4double detZ = .1*cm;      // .2 cm
 
-  G4ThreeVector radPlacement = G4ThreeVector(0, 0, -worldXY);
-  G4ThreeVector detPlacement = G4ThreeVector(0, 0, worldXY);
+  G4double detZpos = 15*cm;
+  G4double radZpos = -15*cm;
+
+  G4ThreeVector radPlacement = G4ThreeVector(0, 0, radZpos);
+  G4ThreeVector detPlacement = G4ThreeVector(0, 0, detZpos);
 
   // ------ > defining volumes: G4Box takes halves of the total box size
   // G4PVPlacement(Rotation, location, logicVol, name, mother volume, bool operation, copy num, overlaps)
 
-  // world volume: 30x30x50 cm
+  // world volume: 40x40x60 cm
   G4bool checkOverlaps = true;
   auto solidWorld = new G4Box("World", worldXY, worldXY, worldZ);
   auto logicWorld = new G4LogicalVolume(solidWorld, fVacuum, "WorldLV");
@@ -128,7 +133,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   auto logicRadiator = new G4LogicalVolume(solidRadiator, fAerogel, "RadiatorLV");
   fPhysRadiator = new G4PVPlacement(nullptr, radPlacement, logicRadiator, "Radiator", logicWorld, false, 0, checkOverlaps);
 
-  // detector volume: 20x20x.2
+  // detector volume: 30x30x.2
   auto solidDetector = new G4Box("Detector", detXY, detXY, detZ);
   auto logicDetector = new G4LogicalVolume(solidDetector, fSiC, "DetectorLV");
   fPhysDetector = new G4PVPlacement(nullptr, detPlacement, logicDetector, "DetectorLV", logicWorld, false, 0, checkOverlaps);
@@ -155,8 +160,10 @@ void DetectorConstruction::ConstructSDandField()
   // attatch to logical vol
   // attach via string name 
   // can also put this in if/else to make sure logicDetector even exists and then create error messg if not
-  SetSensitiveDetector("DetectorLV", richSD);
+  // SetSensitiveDetector("DetectorLV", richSD);
+  // commented out since the hits are changed to be recorded in the stepping action instead
   // another method is logicLV->SetSensitiveDetector(richSD)
+  // 
 
 }
 

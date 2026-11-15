@@ -1,5 +1,6 @@
 
 #include "ActionInitialization.hh"
+#include "SteppingAction.hh"
 
 #include "EventAction.hh"
 #include "PrimaryGeneratorAction.hh"
@@ -23,6 +24,7 @@ void ActionInitialization::Build() const
 
   auto eventAction = new EventAction();
   SetUserAction(eventAction);
+  SetUserAction(new SteppingAction(eventAction));
 }
 
 }  // namespace rich

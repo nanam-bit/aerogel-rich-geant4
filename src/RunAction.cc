@@ -14,12 +14,18 @@ RunAction::RunAction()
 {
   auto analysisManager = G4AnalysisManager::Instance();
   analysisManager->SetVerboseLevel(1);
+  analysisManager->SetNtupleMerging(true); // merges multiple ROOT file outputs with all events
 
   analysisManager->CreateNtuple("PhotonHits", "RICH Photon Detection");
-  analysisManager->CreateNtupleDColumn("X"); //   ID: 0
-  analysisManager->CreateNtupleDColumn("Y"); //       1
-  analysisManager->CreateNtupleDColumn("Z"); //       2
-  analysisManager->CreateNtupleDColumn("Edep"); //    3
+  analysisManager->CreateNtupleDColumn("X");      //   ID: 0
+  analysisManager->CreateNtupleDColumn("Y");      //       1
+  analysisManager->CreateNtupleDColumn("Z");      //       2
+  analysisManager->CreateNtupleDColumn("energy"); //       3
+  analysisManager->FinishNtuple();
+
+  analysisManager->CreateNtuple("Events", "Per-event summary");
+  analysisManager->CreateNtupleIColumn("nArrivals");
+  analysisManager->CreateNtupleIColumn("nHits");
   analysisManager->FinishNtuple();
 }
 

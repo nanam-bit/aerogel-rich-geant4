@@ -1,9 +1,12 @@
 
 #include "SensitiveDetector.hh"
+#include "EventAction.hh"
+#include "G4EventManager.hh"
 #include "G4Track.hh"
 #include "G4OpticalPhoton.hh"
 #include "G4Step.hh"
 #include "G4AnalysisManager.hh"
+#include "G4SystemOfUnits.hh"
 
 namespace rich
 {
@@ -31,18 +34,24 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
   G4StepPoint* preStepPoint = step->GetPreStepPoint();
   G4ThreeVector hitPos = preStepPoint->GetPosition();
 
+  auto evAction = static_cast<EventAction*>
+  (
+    G4EventManager::GetEventManager()->GetUserEventAction()
+  );
+  evAction->AddHit();
+
   G4double hitX = hitPos.x();
   G4double hitY = hitPos.y();
   G4double hitZ = hitPos.z();
 
-  G4double edep = step->GetTotalEnergyDeposit();
+  G4double energy = preStepPoint->GetTotalEnergy() / CLHEP::eV;
 
   auto analysisManager = G4AnalysisManager::Instance();
-  analysisManager->FillNtupleDColumn(0, hitX);
-  analysisManager->FillNtupleDColumn(1, hitY);
-  analysisManager->FillNtupleDColumn(2, hitZ);
-  analysisManager->FillNtupleDColumn(3, edep);
-  analysisManager->AddNtupleRow();
+  analysisManager->FillNtupleDColumn(0, 0, hitX);
+  analysisManager->FillNtupleDColumn(0, 1, hitY);
+  analysisManager->FillNtupleDColumn(0, 2, hitZ);
+  analysisManager->FillNtupleDColumn(0, 3, energy);
+  analysisManager->AddNtupleRow(0);
 
   track->SetTrackStatus(fStopAndKill);
 
