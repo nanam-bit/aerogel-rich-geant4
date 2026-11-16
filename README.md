@@ -5,6 +5,8 @@ Ring Imaging Cherenkov (RICH) Detectors identify electrically charged subatomic 
 
 The objective of this project is to simulate the characteristic ring pattern of the photons and compare the simulation results against theory. 
 
+![Reconstructed ring, hit radius, and detected photon energy.](DataOutput/Figure_1.png)
+
 ## Theory
 
 A charged particle with speed $\beta c$ in a medium of refractive index $n$ emits light at
@@ -61,7 +63,7 @@ For this simulation, a particle travels in a straight line along the z-axis thro
 | Beam | $\pi^-$, 3 GeV kinetic energy, along +z, 1000 events |
 | Physics | `FTFP_BERT` + `G4OpticalPhysics` (Cherenkov on, scintillation off) |
 
-Photons that are detected are killed at the detector boundary, so a sensitive detector attached to the SiC volume would never see them. Instead, `SteppingAction` counts every photon crossing into the detector (arrivals) and records a hit when `G4OpBoundaryProcess` reports `Detection`. The hit position is the point on the detector face. 
+Photons that are detected are killed at the detector boundary, so a sensitive detector attached to the SiC volume would never see them. Instead, `SteppingAction` counts every photon crossing into the detector (arrivals) and records a hit when `G4OpBoundaryProcess` reports `Detection`. The hit position is the point on the detector face. Whether or not it is counted as a 'hit' depends on the efficiency at that photon energy. If not counted as a hit, it is killed without record.
 
 ## Data Output
 
