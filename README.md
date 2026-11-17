@@ -33,7 +33,7 @@ The photon energy form of the Frank-Tamm formula gives the number of photons emi
 
 $$\frac{d^2N}{dx dE} = \frac{\alpha}{\hbar c} \cdot z^2 \cdot \sin^2\theta_c$$
 
-With $\sin^2\theta_c = 1 - \frac{1}{n\beta} = 0.0912$, $\Delta E = 2$ eV (the 2 to 4 eV window where RINDEX was defined, see `Detectorconstruction.cc`), $z = 1$ for a pion, and $\alpha = \frac{1}{137}$:
+With $\sin^2\theta_c = 1 - \frac{1}{n\beta} = 0.0912$, $\Delta E = 2$ eV (the 2 to 4 eV window where EFFICIENCY was defined, see `Detectorconstruction.cc`), $z = 1$ for a pion, and $\alpha = \frac{1}{137}$:
 
 The constant $\frac{\alpha}{\hbar c} \approx 370 \text{ per eV per cm}$.
 
